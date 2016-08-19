@@ -1,13 +1,66 @@
-#C_M_E P (component_module_element property) style guide for web
+#M_E M (module_element modificator) style guide for web
 
-CME is a ideology of creating names for web (blocks, classes etc).
+MEm is a ideology for creating app's structure (web etc).
 
-Typical name is a name of component, name of module and name of element.
+page = some modules
+module = some elements
 
-Example:
+---FILE STRUCTURE---
 
- id="we_search_address"
-where "we" (abbreviation "wysiwig-editor") - component, "search" - module, "address" - element
+index.html
+/modules
+	/news
+	/weather
+	/calendar
+/templates
+	index.html
+	news.html
+	search.html
+	about.html
 
- class="we_search_address show"
-where element "address" has property "show"
+---FILES---
+
+*html*
+
+	<body>
+		<div class="pageController">
+		    <div class="row">
+		    	<div class="row-cell">
+		    		<div class="block moduleName" id="moduleName">
+			    		<label>
+			    			<input type="text" class="moduleName_name" id="moduleName_name" value="Some text">
+			    		</label>
+		    		</div>
+		    	</div>
+		    </div>
+		</div>
+	</body>
+
+*css/less*
+
+	/* default html elements */
+	body {}
+	input {}
+
+	/* default elements */
+	.row {
+		.row-cell {
+			.block {
+				/* exception */
+				&.moduleName {}
+			}
+		}
+	}
+
+
+	/* header */
+	...
+
+	/* modules */
+	.moduleName
+
+		/* elements */
+		.moduleName_name
+
+	/* footer */
+	...
