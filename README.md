@@ -1,34 +1,45 @@
-#M_E M (module_element modificator) style guide for web
+#M-C_E-M (module-component_element-modificator) style guide for web
 
 MEm is a ideology for creating app's structure (web etc).
 
-page = some modules
-module = some elements
+module(page) = some modules
+components = some elements
 
 ---FILE STRUCTURE---
 
-index.html
-/modules
+/components
 	/news
 	/weather
 	/calendar
-/templates
-	index.html
-	news.html
-	search.html
-	about.html
+/modules
+	/main
+		controller.js
+		template.html
+	/news
+		controller.js
+		template.html
+	/about
+		controller.js
+		search.html
+/skins
+	/SkinName
+		/css
+		/js
+		/img
+index.html
+app.js
 
 ---FILES---
 
 *html*
 
 	<body>
-		<div class="pageController">
+		<div class="ModuleName">
 		    <div class="row">
 		    	<div class="row-cell">
-		    		<div class="block moduleName" id="moduleName">
+		    		<div class="block ComponentName" id="ComponentName">
 			    		<label>
-			    			<input type="text" class="moduleName_name" id="moduleName_name" value="Some text">
+			    			<input type="text" class="ComponentName_name" id="ComponentName_name" value="Some text">
 			    		</label>
 		    		</div>
 		    	</div>
@@ -47,7 +58,7 @@ index.html
 		.row-cell {
 			.block {
 				/* exception */
-				&.moduleName {}
+				&.componentName {}
 			}
 		}
 	}
@@ -56,11 +67,11 @@ index.html
 	/* header */
 	...
 
-	/* modules */
-	.moduleName
+	/* components */
+	.componentName
 
 		/* elements */
-		.moduleName_name
+		.componentName_name
 
 	/* footer */
 	...
