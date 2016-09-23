@@ -10,31 +10,31 @@ Where
 
 Lenght of all names would be about 7-9 symbols.
 
-Names of modules and components would start with a capital letter. 
+Names of modules and components would start with a capital letter.
 
 ---FILE STRUCTURE---
 
-/components
-	/news
-	/weather
-	/calendar
-/modules
-	/main
-		controller.js
-		template.html
-	/news
-		controller.js
-		template.html
-	/about
-		controller.js
-		search.html
-/skins
-	/SkinName
-		/css
-		/js
-		/img
-index.html
-app.js
+* /components
+** /news
+** /weather
+** /calendar
+* /modules
+** /main
+*** controller.js
+*** template.html
+** /news
+*** controller.js
+*** template.html
+* /about
+** controller.js
+** search.html
+* /skins
+** /SkinName
+*** /css
+*** /js
+*** /img
+* index.html
+* app.js
 
 ---FILES---
 
@@ -83,5 +83,3 @@ app.js
 
 	/* footer */
 	...
-
-
