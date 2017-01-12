@@ -3,14 +3,30 @@
 MCem (Module Component element modificator) is a ideology for creating app's structure (web etc).
 
 Where
+
 * module = some components
 * component = some elements
 
 ---NAMES---
 
-Lenght of all names would be about 7-9 symbols.
+* Lenght of all names would be about 7-9 symbols.
+* Names of modules and components would start with a capital letter.
+* Names may include "_" as separators.
+* Set "-" between elements and modificators in file names.
 
-Names of modules and components would start with a capital letter.
+Examples (files):
+
+* email_form.js
+* email_form-theme-light.css
+* email_form-theme-dark.css
+
+Examples (html):
+
+* Module: <div name="module About" id="module_About"></div>
+* OR use other style (HTML5 tag "section"): <section name="About" id="About"></section>
+* Component: <div class="EmailForm" id="EmailForm"></div>
+* Element: <input class="firstname" id="EmailForm-firstname"></div>
+* Modificator: <input class="firstname hide" id="EmailForm-firstname"></div> // hide
 
 ---FILE STRUCTURE---
 
@@ -35,51 +51,3 @@ Names of modules and components would start with a capital letter.
     * /img
 * index.html
 * app.js
-
----FILES---
-
-*html*
-
-	<body>
-		<div class="module ModuleName">
-		    <div class="row">
-		    	<div class="row-cell">
-		    		<div class="component ComponentName" id="ComponentName">
-			    		<div class="form-group name">
-			    			<label for="ComponentName_name">Name</label>
-			    			<input type="text" class="ComponentName_name_input" id="ComponentName_name_input" value="Some text" />
-			    		</div>
-		    		</div>
-		    	</div>
-		    </div>
-		</div>
-	</body>
-
-*css/less*
-
-	/* default html elements */
-	body {}
-	input {}
-
-	/* default elements */
-	.row {
-		.row-cell {
-			.block {
-				/* exception */
-				&.componentName {}
-			}
-		}
-	}
-
-
-	/* header */
-	...
-
-	/* components */
-	.componentName
-
-		/* elements */
-		.componentName_name
-
-	/* footer */
-	...
