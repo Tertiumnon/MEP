@@ -28,52 +28,179 @@
 
 Первые два уровня описываются в Pascal-case, элемент - в нижнем регистре:
 
-```scss
+```sass
 .ModuleName .ComponentName .element
 ```
 
-Внутри родительского модуля могут быть другие модули.
+### Элемент
+
+> Элемент - это самый примитивный блок.
+
+Создаём простой элемент:
 
 ```html
-<div class="module Header">
-  <div class="component Logotype">
-    <img src="logotype.svg" class="element logotype" />
-  </div>
-  <div class="component MainMenu">
-    <ul class="element list">
-      <li class="active"><span>Item 1</span></li>
-      <li><span>Item 2</span></li>
-    </ul>
+<img src="logotype.svg" class="logo" />
+```
+
+Добавляем ему стиль:
+
+```sass
+.logo {}
+```
+
+Делаем обёртку - теперь с этим будет удобнее работать:
+
+```html
+<span class="logo">
+  <img src="logotype.svg" />
+</span>
+```
+
+Теперь стиль будет выглядеть так:
+
+```sass
+.logo {
+  img {}
+}
+```
+
+Выглядит максимально просто, и не нужно усложнять этот вид дополнительными атрибутами. Если на странице несколько логотипов, можно уточнить:
+
+```html
+<span class="main-logo">
+  <img src="logotype.svg" />
+</span>
+```
+
+Если этот элемент нужно отображать в разных ситуациях по-разному, хорошо использовать принцип компонента.
+
+### Компонент
+
+> Компонент - это блок из одного или нескольких элементов, который можно переиспользовать.
+
+### Модификатор
+
+Для того, чтобы внести какое-либо изменение в блок, достаточно добавить ему модификатор (состояние). Например, если мы хотим скрыть блок, достаточно добавить ему класс hide. Будет лучше, если модификатор будет отвечать на вопрос "Какой?". Соответственно, hide -> hidden.
+
+```html
+<span class="main-logo hidden">
+  <img src="logo.svg" />
+</span>
+```
+
+Логотип может быть нестандартного размера. Можно подсмотреть нотацию в популярных системах, таких как, например, Bootstrap. Попробуем показать логотип небольшого размера:
+
+```html
+<span class="main-logo xs">
+  <img src="logo.svg" />
+</span>
+```
+
+На другой странице логотип может быть очень большим:
+
+```html
+<span class="main-logo xl">
+  <img src="logo.svg" />
+</span>
+```
+
+Отобразить это в стилях очень просто:
+
+```sass
+.main-logo {
+  img {}
+  & .xs {}
+  & .xl {}
+}
+```
+
+Если нужно манипулировать элементом image в зависимости от размера:
+
+```sass
+.main-logo {
+  img {}
+  & .xs {
+    img {}
+  }
+  & .xl {
+    img {}
+  }
+}
+```
+
+Для того, чтобы производить изменения с логотипом может понадобится скрипт. Когда кода и логики становится много, удобно держать всю логику в одной директории. Названия файлов должны по возможности отражать название компонента.
+
+```filesystem
+components/logo/logo.js
+components/logo/logo.png
+components/logo/logo.sass
+components/logo/logo.svg
+```
+
+Файл logo.js может быть классом компонента и содержать логику инстанса и соответствующих ему методов.
+
+```javascript
+class Logo {
+  constructor(el) {
+    this.el = el;
+  }
+  
+  hide() {
+    this.el.classList.add('hidden');
+  }
+  
+  show() {
+    this.el.classList.remove('hidden');
+  }
+}
+```
+
+Вызов компонента осуществляется в модуле.
+
+### Модуль
+
+> Модуль - это логически выделенный блок, состоящий из одного или несколько компонентов.
+
+Например, семантический HTML-элемент header - это модуль.
+
+```html
+<header>
+  <span class="main-logo">
+    <img src="logo.svg" />
   </span>
-</div>
+</header>
 ```
 
-### Элементы формы
+Добавляем меню:
 
-Элементы формы - это кирпичи, из которых выстраивается её содержимое.
+```html
+<header>
 
-```scss
-.element.wrapper {
-  .label {}
-  .input {}
-}
+  <span class="main-logo">
+    <img src="logo.svg" />
+  </span>
+
+  <nav class="main-menu">
+    <a href="/home/">Home</a>
+    <a href="/contacts/">Contacts</a>
+  </nav>
+
+</header>
 ```
 
-Например:
+Инициализируем модуль Header и компонент Logo.
 
-```scss
-.checkbox.wrapper {
-  .label {}
-  .input {}
-}
+```javascript
+import Logo from './components/logo/logo';
+
+const header = {};
+header.mainLogo = new Logo(document.querySelector('.main-logo'));
 ```
 
-### Модификаторы
+### Структура файлов и папок
 
-Модификаторы - это классы, которые отвечают на вопрос "что сделать? какой?". Например, "сделать этот пункт меню активным (этот элемент - активный)".
-
-```scss
-.btn {} // правила для всех кнопок
-.btn.default {} // вид кнопки по умолчанию
-.btn.primary {} // вид кнопки "call to action"
+```filesystem
+app/
+components/
+modules/
 ```
