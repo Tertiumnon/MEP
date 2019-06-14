@@ -26,7 +26,7 @@
 
 Добавляем ему стиль:
 
-```sass
+```less
 .logo {}
 ```
 
@@ -40,7 +40,7 @@
 
 Теперь стиль будет выглядеть так:
 
-```sass
+```less
 .logo {
   img {}
 }
@@ -88,23 +88,23 @@
 
 Отобразить это в стилях очень просто:
 
-```sass
+```less
 .main-logo {
   img {}
-  & .xs {}
-  & .xl {}
+  &.xs {}
+  &.xl {}
 }
 ```
 
 Если нужно манипулировать элементом image в зависимости от размера:
 
-```sass
+```less
 .main-logo {
   img {}
-  & .xs {
+  &.xs {
     img {}
   }
-  & .xl {
+  &.xl {
     img {}
   }
 }
@@ -115,7 +115,7 @@
 ```filesystem
 components/logo/logo.js
 components/logo/logo.png
-components/logo/logo.sass
+components/logo/logo.less
 components/logo/logo.svg
 ```
 
@@ -209,7 +209,7 @@ const secretNames = document.querySelector('input[name="secret-names"]');
 
 Иногда лучше конкретизировать, чтобы в стилях лучше понимать о каком элементе идёт речь:
 
-```sass
+```less
 input[name="name"] {}
 ```
 
@@ -220,7 +220,7 @@ CSS-класс присваивается только если он содер�
 <textarea name="description" class="rounded-borders"></textarea>
 ```
 
-```sass
+```less
 .rounded-borders {
   border-radius: 6px;
 }
@@ -237,7 +237,7 @@ CSS-класс присваивается только если он содер�
 
 Можно оставить rounded-borders отдельным классом, чтобы потом переиспользовать.
 
-```sass
+```less
 .rounded-borders {
   border-radius: 6px;
 }
