@@ -1,4 +1,4 @@
-# Tertium.Styleguide
+# Tertium.Styleguide (HTML / CSS / JS)
 
 ## Представление
 
