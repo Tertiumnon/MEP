@@ -1,4 +1,4 @@
-# Tertium.Styleguide (HTML / CSS / JS)
+# Frontend Styleguide (HTML / CSS / JS)
 
 ## Представление
 
