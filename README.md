@@ -1,4 +1,4 @@
-# Frontend Styleguide (HTML / CSS / JS)
+# Frontend Style Guide (HTML / CSS / JS)
 
 ## Элементы
 
